@@ -65,6 +65,30 @@ public class AppUser  implements UserDetails {
 
     }
 
+    /**\
+     * Used to check user role
+     * @return Boolean
+     */
+    public Boolean isUser(){
+        return appUserRole == AppUserRole.USER ;
+    }
+
+    /**\
+     * Used to check user role
+     * @return Boolean
+     */
+    public Boolean isAdmin() {
+        return appUserRole == AppUserRole.ADMIN ;
+    }
+
+    /**\
+     * Used to check user role
+     * @return Boolean
+     */
+    public Boolean isMember() {
+        return appUserRole == AppUserRole.MEMBER ;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority=new SimpleGrantedAuthority(appUserRole.name());
@@ -110,25 +134,6 @@ public class AppUser  implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
-    public Integer hasRole(String roleName) {
-        AppUserRole UserLogin= AppUserRole.USER;
-        AppUserRole AdminLogin= AppUserRole.ADMIN;
-        AppUserRole ManagerLogin= AppUserRole.MEMBER;
-
-        if(UserLogin.toString() == roleName){
-            return 1;
-
-        }else if(AdminLogin.toString()==roleName){
-            return 2;
-        }else if(ManagerLogin.toString()==roleName){
-            return 3;
-        }else{
-            return 5;
-        }
-
-    }
-
 
 
 }
